@@ -30,15 +30,19 @@ import java.util.ArrayList;
 import io.realm.OrderedRealmCollection;
 import io.realm.Realm;
 import io.realm.RealmResults;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
     String response;
-    private String jsonURL = "https://randomuser.me/api/?results=10";
+    final private String url = "https://randomuser.me/api/?results=10";
     private RecyclerView recyclerView;
     private RogerAdapter rogerAdapter;
     private static ProgressDialog mProgressDialog;
-    Gson gson;
+    OkHttpClient client = new OkHttpClient();
+
     private Button removeButton;
 
     @Override
@@ -81,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+
     @SuppressLint("StaticFieldLeak")
     public void fetchJSON() {
         //showSimpleProgressDialog(this, "Loading...","I Tuoi dati saranno disponibili tra poco...",false);
@@ -89,28 +95,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                gson = new Gson();
+
             }
 
             protected Data doInBackground(String... strins) {
+                Gson gson = new Gson();
                 final Realm realm = Realm.getDefaultInstance();
                 Data result = new Data();
                 try {
-                    URL url = new URL(jsonURL);
-                    HttpURLConnection req = (HttpURLConnection) url.openConnection();
-                    try {
-                        InputStream in = new BufferedInputStream(req.getInputStream());
-                        byte[] buffer = new byte[1024];
-                        int byteLetti = 0;
-                        response = "";
-                        while ((byteLetti = in.read(buffer)) != -1) {
-                            response += new String(buffer, 0, byteLetti);
+                        Request request = new Request.Builder().url(url).build();
+
+                        try {
+                            Response response = client.newCall(request).execute();
+                            response.body().toString();
                         }
+                        catch(IOException e){
+                            e.printStackTrace();
+                    }
                         Type resultType = new TypeToken<Data>(){}.getType();
                         result = gson.fromJson(response, resultType);
-                    } finally {
-                        req.disconnect();
-                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -121,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                             realm.insert(finalData.getResults());
                         }
                     });
-                return result;
+                return finalData;
             }
 
             @Override

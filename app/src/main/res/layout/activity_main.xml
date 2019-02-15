@@ -35,7 +35,7 @@
         android:id="@+id/RemoveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Delete All"/>
+        android:text="Delete All" />
 
 
     <android.support.v4.widget.SwipeRefreshLayout
@@ -47,9 +47,9 @@
             android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:layout_marginTop="15dp"
-            android:background="#ffffff"/>
+            android:background="#ffffff"
+            android:padding="10dp" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>
