@@ -1,7 +1,9 @@
 package com.example.testdproject.model;
 import com.google.gson.annotations.*;
 
-public class User {
+import io.realm.RealmObject;
+
+public class User extends RealmObject {
     @SerializedName(value="name")
     @Expose
     Name name;

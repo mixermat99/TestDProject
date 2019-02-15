@@ -2,12 +2,14 @@ package com.example.testdproject.model;
 
 import com.google.gson.annotations.*;
 
+import io.realm.RealmObject;
+
 
 /**
  * Created by mattiaco on 07/02/2019.
  */
 
-public class Timezone {
+public class Timezone extends RealmObject {
     @SerializedName(value="offset")
     @Expose
     public String offSet;

@@ -5,11 +5,13 @@ import com.google.gson.annotations.*;
 
 import java.util.Date;
 
+import io.realm.RealmObject;
+
 /**
  * Created by mattiaco on 07/02/2019.
  */
 
-public class Dob {
+public class Dob extends RealmObject {
     @SerializedName(value="date")
     @Expose
     public Date date;

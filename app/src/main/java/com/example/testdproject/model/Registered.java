@@ -2,11 +2,13 @@ package com.example.testdproject.model;
 import com.google.gson.annotations.*;
 import java.util.Date;
 
+import io.realm.RealmObject;
+
 /**
  * Created by mattiaco on 07/02/2019.
  */
 
-public class Registered {
+public class Registered extends RealmObject {
     @SerializedName(value="date")
     @Expose
     public Date registeredDate;

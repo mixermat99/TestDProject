@@ -1,10 +1,13 @@
 package com.example.testdproject.model;
 import com.google.gson.annotations.*;
+
+import io.realm.RealmObject;
+
 /**
  * Created by mattiaco on 07/02/2019.
  */
 
-public class Login {
+public class Login extends RealmObject {
     @SerializedName(value="uuid")
     @Expose
     public String uuid;

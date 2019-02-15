@@ -3,7 +3,9 @@ package com.example.testdproject.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Picture {
+import io.realm.RealmObject;
+
+public class Picture extends RealmObject {
 
     @SerializedName(value="large")
     @Expose

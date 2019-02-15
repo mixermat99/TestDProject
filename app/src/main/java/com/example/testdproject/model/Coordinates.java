@@ -3,7 +3,9 @@ package com.example.testdproject.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Coordinates extends {
+import io.realm.RealmObject;
+
+public class Coordinates extends RealmObject{
 
     @SerializedName("latitude")
     @Expose

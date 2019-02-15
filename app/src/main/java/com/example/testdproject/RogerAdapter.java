@@ -33,7 +33,7 @@ public class RogerAdapter extends RecyclerView.Adapter<RogerAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Picasso.get().load(userList.get(position).getPicture().getThumbnail()).into(holder.iv);
-        holder.name.setText(userList.get(position).getName().getFirst());
+        holder.name.setText(userList.get(position).getName().getFirst().toUpperCase());
         holder.country.setText(userList.get(position).getLocation().getState());
         holder.city.setText(userList.get(position).getLocation().getCity());
         holder.email.setText(userList.get(position).getEmail());
